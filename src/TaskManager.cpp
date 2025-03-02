@@ -21,8 +21,8 @@ TaskManager::~TaskManager() {
     cout << "Task Manager Destroyed" << endl;
 }
 
-void TaskManager::addTask(string t, TaskPriority p) {
-    Task task(t, p);
+void TaskManager::addTask(string t, TaskPriority p, TaskStatus l) {
+    Task task(t, p, l);
 
     unique_ptr<Task> ptr = std::make_unique<Task>(task);
     tasks.push_back(std::move(ptr));
@@ -31,7 +31,9 @@ void TaskManager::addTask(string t, TaskPriority p) {
 void TaskManager::listTasks() {
     int numTasks = 1;
     for (const auto &x : tasks) {
-        cout << "Task " + to_string(numTasks++) + ": " << x->getDescription() + " Priority: " + x->getPriority() << endl;
+        cout << "Task " + to_string(numTasks++) + ": " 
+        << x->getDescription() + " Priority: " + x->getPriority() 
+        << " Status: " + x->getStatus() << endl;
     }
 }
 
@@ -59,4 +61,8 @@ int TaskManager::taskCount() const {
 
 string TaskManager::getTaskPriority(int index) {
     return tasks[index - 1]->getPriority();
+}
+
+string TaskManager::getStatus(int index) {
+    return tasks[index - 1]->getStatus();
 }
