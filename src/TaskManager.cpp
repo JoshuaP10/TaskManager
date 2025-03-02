@@ -28,7 +28,7 @@ void TaskManager::addTask(string t, TaskPriority p, TaskStatus l) {
     tasks.push_back(std::move(ptr));
 }
 
-void TaskManager::listTasks() {
+void TaskManager::listTasks() const {
     int numTasks = 1;
     for (const auto &x : tasks) {
         cout << "Task " + to_string(numTasks++) + ": " 
@@ -59,10 +59,17 @@ int TaskManager::taskCount() const {
     return tasks.size();
 }
 
-string TaskManager::getTaskPriority(int index) {
+string TaskManager::getTaskPriority(int index) const {
     return tasks[index - 1]->getPriority();
 }
 
-string TaskManager::getStatus(int index) {
+string TaskManager::getStatus(int index) const {
     return tasks[index - 1]->getStatus();
+}
+
+std::string TaskManager::getTaskDescription(int index) const {
+    if (index >= 0 && index < taskCount()) {
+        return tasks[index]->getDescription();
+    }
+    return "Invalid Task";
 }

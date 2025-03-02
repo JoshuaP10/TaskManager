@@ -20,12 +20,14 @@ public:
     ~TaskManager();
 
     void addTask(string t, TaskPriority p = TaskPriority::LOW, TaskStatus l = TaskStatus::NOT_COMPLETED);
-    void listTasks();
+    void listTasks() const;
     void removeTask(int index);
     string printTasks() const;
     int taskCount() const;
-    string getTaskPriority(int index);
-    string getStatus(int index);
+    string getTaskPriority(int index) const;
+    string getStatus(int index) const;
+    string getTaskDescription(int index) const;
+
     
 
 private:
