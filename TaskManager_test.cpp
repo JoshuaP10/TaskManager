@@ -32,8 +32,19 @@ void testTaskCount() {
     assert(t.taskCount() == 2);
 }
 
+void testGetPriority() {
+    TaskManager t;
+    t.addTask("1", TaskPriority::HIGH);
+    t.addTask("2");
+    cout << t.getTaskPriority(1) << endl;
+    cout << t.getTaskPriority(2) << endl;
+    assert(t.getTaskPriority(1) == "HIGH");
+    assert(t.getTaskPriority(2) == "LOW");
+}
+
 int main() {
     testAddTask();
     testRemoveTask();
     testTaskCount();
+    testGetPriority();
 }

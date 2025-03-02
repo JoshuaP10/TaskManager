@@ -19,11 +19,13 @@ public:
     TaskManager();
     ~TaskManager();
 
-    void addTask(string);
+    void addTask(string t, TaskPriority p = TaskPriority::LOW);
     void listTasks();
     void removeTask(int index);
     string printTasks() const;
     int taskCount() const;
+    string getTaskPriority(int index);
+    
 
 private:
     std::vector<unique_ptr<Task>> tasks;
