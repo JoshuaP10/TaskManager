@@ -42,9 +42,18 @@ void testGetPriority() {
     assert(t.getTaskPriority(2) == "LOW");
 }
 
+void testGetStatus() {
+    TaskManager t;
+    t.addTask("1", TaskPriority::LOW, TaskStatus::COMPLETED);
+    t.addTask("2", TaskPriority::LOW);
+    assert(t.getStatus(1) == "Completed");
+    assert(t.getStatus(2) == "Not Completed");
+}
+
 int main() {
     testAddTask();
     testRemoveTask();
     testTaskCount();
     testGetPriority();
+    testGetStatus();
 }
