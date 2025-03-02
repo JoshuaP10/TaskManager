@@ -43,16 +43,34 @@ int main() {
                 break;
             case 1:
                 {
-                    string task;
+                    string task, priority;
+                    TaskPriority p;
                     cin.ignore();
+                    cout << "Please enter the task description: " << endl;
                     getline(cin, task);
-                    t.addTask(task);
+                    cout << "Please enter the priority{LOW, MEDIUM, HIGH, CRITICAL}: " << endl;
+                    cin >> priority;
+                    if (priority == "LOW") {
+                        p = TaskPriority::LOW;
+                    } else if (priority == "MEDIUM") {
+                        p = TaskPriority::MEDIUM;
+                    } else if (priority == "HIGH") {
+                        p = TaskPriority::HIGH;                  
+                    } else if (priority == "CRITICAL") {
+                        p = TaskPriority::CRITICAL;
+                    }
+                    else {
+                        cout << "Invalid entry, resetting to main menu" << endl;
+                        continue;
+                    }
+                    t.addTask(task, p);
                     break;
                 }
             case 2:
                 {
-                    cout << "Choose a task to remove: " << endl;
+                    cout << "Choose a task to remove: " << endl << endl;
                     t.listTasks();
+
                     int num;
                     cin >> num;
                     if (cin.fail() || num > t.taskCount() || num < 0) {
